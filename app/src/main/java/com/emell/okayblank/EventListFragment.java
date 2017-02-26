@@ -1,5 +1,6 @@
 package com.emell.okayblank;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,7 +69,8 @@ public class EventListFragment extends Fragment {
 		}
 
 		public void onClick(View v) {
-			Toast.makeText(getActivity(),mEvent.getTitle(), Toast.LENGTH_SHORT).show();
+			Intent intent = EventActivity.newIntent(getActivity(), mEvent.getId());
+			startActivity(intent);
 		}
 
 	}
