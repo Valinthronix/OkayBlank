@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import java.util.UUID;
 
-public class EventActivity extends SingleFragmentActivity{
+public class EventActivity extends DrawerWithFragmentActivity{
 
 	private static final String EXTRA_EVENT_ID = "com.emell.OkayBlank.event_id";
 

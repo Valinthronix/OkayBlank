@@ -12,4 +12,6 @@ public class EventListActivity extends DrawerWithFragmentActivity {
 	protected Fragment createFragment(){
 		return new EventListFragment();
 	}
+
+
 }
