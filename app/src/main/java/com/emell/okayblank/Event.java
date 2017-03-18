@@ -1,5 +1,6 @@
 package com.emell.okayblank;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 /**
@@ -10,22 +11,23 @@ public class Event {
 	private UUID mId;
 	private String mTitle;
 	private String mDescription;
-	private int mGrade;
+	private Calendar mDate;
+	private String mBlock;
 
 	public Event() {
 		mId = UUID.randomUUID();
 	}
 
+	public Event( String title, String description, Calendar date, String block) {
+		mId = UUID.randomUUID();
+		mTitle = title;
+		mDescription = description;
+		mDate = date;
+		mBlock = block;
+	}
+
 	public UUID getId() {
 		return mId;
-	}
-
-	public int getGrade() {
-		return mGrade;
-	}
-
-	public void setGrade(int grade) {
-		mGrade = grade;
 	}
 
 	public String getTitle() {
@@ -42,5 +44,21 @@ public class Event {
 
 	public void setDescription(String description) {
 		mDescription = description;
+	}
+
+	public Calendar getDate() {
+		return mDate;
+	}
+
+	public void setDate(Calendar date) {
+		mDate = date;
+	}
+
+	public String getBlock() {
+		return mBlock;
+	}
+
+	public void setBlock(String block) {
+		mBlock = block;
 	}
 }

@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ public abstract class DrawerWithFragmentActivity extends FragmentActivity {
 	private DrawerLayout mDrawerLayout;
 
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,20 +33,56 @@ public abstract class DrawerWithFragmentActivity extends FragmentActivity {
 		mNavigationView = (NavigationView) findViewById(R.id.nav_view);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+		final Menu menu = mNavigationView.getMenu();
+		final int start = Menu.FIRST + 1;
+
+
+		final FragmentManager fm = getSupportFragmentManager();
+		Fragment fragment = fm.findFragmentById(R.id.drawer_fragment_container);
+
+		NavigationView.OnNavigationItemSelectedListener navListener = new NavigationView.OnNavigationItemSelectedListener() {
 			@Override
 			public boolean onNavigationItemSelected(MenuItem menuItem) {
 				menuItem.setChecked(true);
+				int id = menuItem.getItemId();
+				FragmentTransaction ft = fm.beginTransaction();
+
+				switch (id) {
+					case R.id.upcoming:
+						ft.replace(R.id.drawer_fragment_container, EventListFragment.newInstance("all"));
+						break;
+					case R.id.past:
+						ft.replace(R.id.drawer_fragment_container, EventListFragment.newInstance("all"));
+						break;
+				}
+				ft.commit();
+
 				mDrawerLayout.closeDrawers();
 				return true;
 			}
-		});
+		};
 
-		final Menu menu = mNavigationView.getMenu();
+		mNavigationView.setNavigationItemSelectedListener(navListener);
+
 		for (int i = 1; i <= 3; i++) {
-			menu.add(R.id.nav_group, Menu.NONE, Menu.NONE, "Runtime item "+ i);
+			menu.add(R.id.nav_group, start + i, Menu.NONE, Integer.toString(i-1));
+
+			menu.findItem(start+i).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					FragmentTransaction ft = fm.beginTransaction();
+					ft.replace(R.id.drawer_fragment_container, EventListFragment.newInstance(item.getTitle().toString()));
+					ft.commit();
+					return false;
+				}
+			});
 		}
 		menu.setGroupCheckable(R.id.nav_group, true, true);
+
+		mNavigationView.setCheckedItem(R.id.upcoming);
+		//navListener.onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
+
+
 
 /*		for (int i = 0, count = mNavigationView.getChildCount(); i < count; i++) {
 			final View child = mNavigationView.getChildAt(i);
@@ -56,8 +94,6 @@ public abstract class DrawerWithFragmentActivity extends FragmentActivity {
 			}
 		}*/
 
-		FragmentManager fm = getSupportFragmentManager();
-		Fragment fragment = fm.findFragmentById(R.id.drawer_fragment_container);
 
 		if (fragment == null) {
 			fragment = createFragment();

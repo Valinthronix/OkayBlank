@@ -3,6 +3,7 @@ package com.emell.okayblank;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,13 +23,23 @@ public class EventMaster {
 		return sEventMaster;
 	}
 
+
+
 	private EventMaster(Context context) {
 		mEvents = new ArrayList<>();
 		for (int i = 0; i < 100; i++){
-			Event event = new Event();
-			event.setTitle("Event #" + i);
+			Event event;
+			if ((i % 2) == 0) {
+				event = new Assignment();
+				event.setTitle("Event #" + i);
+			}
+			else{
+				event = new Event();
+				event.setTitle("Assignment #" + i);
+			}
 			event.setDescription("Description #" + i);
-			event.setGrade(7);
+			event.setDate(Calendar.getInstance());
+			event.setBlock(Integer.toString(i % 3));
 			mEvents.add(event);
 		}
 	}
@@ -44,6 +55,42 @@ public class EventMaster {
 			}
 		}
 		return null;
+	}
+
+	public List<Assignment> getAssignments() {
+		List<Assignment> assignments = new ArrayList<>();
+		for (Event event : mEvents) {
+			if (event instanceof Assignment){
+				assignments.add((Assignment)event);
+			}
+		}
+		return assignments;
+	}
+
+	public List<Event> getEventsOfBlock(String block){
+		List<Event> events = new ArrayList<>();
+		if (block.equals("all")){
+			return mEvents;
+		}
+		for (Event event : mEvents){
+			if (event.getBlock().equals(block)){
+				events.add(event);
+			}
+		}
+		return events;
+	}
+
+	public List<Assignment> getAssignmentsOfBlock(String block) {
+		List<Assignment> events = new ArrayList<>();
+		if (block.equals("all")){
+			getEvents();
+		}
+		for (Event event : mEvents){
+			if (event.getBlock().equals(block) && event instanceof Assignment){
+				events.add((Assignment)event);
+			}
+		}
+		return events;
 	}
 }
 
