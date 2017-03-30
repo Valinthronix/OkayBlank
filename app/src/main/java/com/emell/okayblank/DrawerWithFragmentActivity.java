@@ -71,7 +71,7 @@ public abstract class DrawerWithFragmentActivity extends FragmentActivity {
 				@Override
 				public boolean onMenuItemClick(MenuItem item) {
 					FragmentTransaction ft = fm.beginTransaction();
-					ft.replace(R.id.drawer_fragment_container, EventListFragment.newInstance(item.getTitle().toString()));
+					ft.replace(R.id.drawer_fragment_container, AssignmentListFragment.newInstance(item.getTitle().toString()));
 					ft.commit();
 					return false;
 				}

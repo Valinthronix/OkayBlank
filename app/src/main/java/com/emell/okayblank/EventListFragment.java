@@ -24,7 +24,7 @@ import static java.util.Locale.US;
  */
 
 public class EventListFragment extends Fragment {
-	private static final String ARG_BLOCK = "block";
+	protected static final String ARG_BLOCK = "block";
 
 	private RecyclerView mEventRecyclerView;
 	private EventAdapter mAdapter;
@@ -58,19 +58,23 @@ public class EventListFragment extends Fragment {
 		mEventRecyclerView.setAdapter(mAdapter);
 	}
 
-	private List<Event> getEventList(EventMaster eventMaster) {
+	protected List<Event> getEventList(EventMaster eventMaster) {
 		List<Event> events = eventMaster.getEventsOfBlock(getArguments().getString(ARG_BLOCK));
 		return events;
 	}
 
-	private class EventHolder extends RecyclerView.ViewHolder
+	protected EventHolder getHolder(View itemView){
+		return new EventHolder(itemView);
+	}
+
+	protected class EventHolder extends RecyclerView.ViewHolder
 			implements View.OnClickListener{
 
-		private Event mEvent;
+		protected Event mEvent;
 
-		private TextView mTitleTextView;
-		private TextView mDescriptionTextView;
-		private TextView mDateTextView;
+		protected TextView mTitleTextView;
+		protected TextView mDescriptionTextView;
+		protected TextView mDateTextView;
 
 		public EventHolder(View itemView){
 			super(itemView);
@@ -91,7 +95,6 @@ public class EventListFragment extends Fragment {
 		}
 
 
-
 		public void onClick(View v) {
 			final FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.replace(R.id.drawer_fragment_container, EventFragment.newInstance(mEvent.getId()));
@@ -101,7 +104,7 @@ public class EventListFragment extends Fragment {
 
 	}
 
-	private class EventAdapter extends RecyclerView.Adapter<EventHolder>{
+	protected class EventAdapter extends RecyclerView.Adapter<EventHolder>{
 		private List<Event> mEvents;
 
 		public EventAdapter(List<Event> events){
@@ -111,8 +114,29 @@ public class EventListFragment extends Fragment {
 		@Override
 		public EventHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-			View view = layoutInflater.inflate(R.layout.list_item_event, parent, false);
-			return new EventHolder(view);
+			switch (viewType) {
+				case 0:
+					View view = layoutInflater.inflate(R.layout.list_item_event, parent, false);
+					return getHolder(view);
+				case 1:
+					View view2 = layoutInflater.inflate(R.layout.list_item_assignment, parent, false);
+					return getHolder(view2);
+			}
+			return new EventHolder(layoutInflater.inflate(R.layout.list_item_event, parent, false));
+		}
+
+		public int getItemViewType(int position){
+			Event item = getItem(position);
+			if (item instanceof Assignment){
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+
+		public Event getItem(int position){
+			return mEvents.get(position);
 		}
 
 		public void onBindViewHolder(EventHolder holder, int position) {

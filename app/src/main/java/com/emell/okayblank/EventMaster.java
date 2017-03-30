@@ -30,11 +30,11 @@ public class EventMaster {
 		for (int i = 0; i < 100; i++){
 			Event event;
 			if ((i % 2) == 0) {
-				event = new Assignment();
+				event = new Event();
 				event.setTitle("Event #" + i);
 			}
 			else{
-				event = new Event();
+				event = new Assignment();
 				event.setTitle("Assignment #" + i);
 			}
 			event.setDescription("Description #" + i);
@@ -80,14 +80,14 @@ public class EventMaster {
 		return events;
 	}
 
-	public List<Assignment> getAssignmentsOfBlock(String block) {
-		List<Assignment> events = new ArrayList<>();
+	public List<Event> getAssignmentsOfBlock(String block) {
+		List<Event> events = new ArrayList<>();
 		if (block.equals("all")){
 			getEvents();
 		}
 		for (Event event : mEvents){
 			if (event.getBlock().equals(block) && event instanceof Assignment){
-				events.add((Assignment)event);
+				events.add(event);
 			}
 		}
 		return events;
