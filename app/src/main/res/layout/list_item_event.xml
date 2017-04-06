@@ -8,25 +8,44 @@
 
 	<TextView
 		android:id="@+id/list_item_event_date"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="4dp"
+		android:layout_width="45dp"
+		android:layout_height="45dp"
 		android:layout_alignParentRight="true"
-		tools:text="Event Date"/>
-    <TextView
-        android:id="@+id/list_item_event_title_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/list_item_event_date"
-        android:textStyle="bold"
-        android:padding="4dp"
-        tools:text="Event Title"/>
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="10dp"
+		android:background="@drawable/redcirc"
+		android:fontFamily="sans-serif"
+		android:gravity="center"
+		android:textColor="@android:color/white"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		tools:text="13" />
 
-    <TextView
-        android:id="@+id/list_item_event_description_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/list_item_event_title_text_view"
-        android:padding="4dp"
-        tools:text="Event Description"/>
+	<TextView
+		android:id="@+id/list_item_event_title_text_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="15dp"
+		android:layout_marginTop="10dp"
+		android:layout_toLeftOf="@id/list_item_event_date"
+		android:fontFamily="roboto-regular"
+		android:padding="4dp"
+		android:textAlignment="viewStart"
+		android:textColor="#48484A"
+		android:textSize="13.5sp"
+		android:textStyle="bold"
+		tools:text="Event Title" />
+
+	<TextView
+		android:id="@+id/list_item_event_description_text_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="15dp"
+		android:padding="4dp"
+		android:textColor="#8C8E90"
+		android:textSize="12sp"
+		tools:text="Event Description"
+		android:layout_alignBottom="@+id/list_item_event_date"
+		android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
