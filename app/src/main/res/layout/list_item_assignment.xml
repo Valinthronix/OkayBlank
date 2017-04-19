@@ -8,25 +8,44 @@
 
 	<TextView
 		android:id="@+id/list_item_event_date"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="4dp"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
 		android:layout_alignParentRight="true"
-		tools:text="Event Date"/>
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="10dp"
+		android:background="@drawable/redcirc"
+		android:fontFamily="sans-serif"
+		android:gravity="center"
+		android:textColor="@android:color/white"
+		android:textSize="24sp"
+		android:textStyle="bold"
+		tools:text="13" />
+
 	<TextView
 		android:id="@+id/list_item_event_title_text_view"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_toLeftOf="@id/list_item_event_date"
-		android:textStyle="bold"
+		android:layout_height="30dp"
+		android:layout_alignTop="@id/list_item_event_date"
+		android:layout_marginLeft="15dp"
+		android:layout_toStartOf="@+id/list_item_event_date"
+		android:fontFamily="roboto-regular"
 		android:padding="4dp"
-		tools:text="Event Title"/>
+		android:gravity="bottom|left"
+		android:textColor="#48484A"
+		android:textSize="14sp"
+		android:textStyle="bold"
+		tools:text="Event Title" />
 
 	<TextView
 		android:id="@+id/list_item_event_description_text_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_below="@id/list_item_event_title_text_view"
+		android:layout_marginLeft="15dp"
 		android:padding="4dp"
-		tools:text="Event Description"/>
+		android:textColor="#8C8E90"
+		android:textSize="13sp"
+		tools:text="Event Description"
+		android:layout_below="@+id/list_item_event_title_text_view"
+		android:layout_toStartOf="@+id/list_item_event_date" />
+
 </RelativeLayout>

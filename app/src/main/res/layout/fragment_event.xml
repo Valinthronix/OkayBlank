@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
-    <TextView android:id="@+id/event_title"
+
+    <TextView
+        android:id="@+id/list_item_event_date"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/redcirc"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="6" />
+
+    <TextView
+        android:id="@+id/list_item_event_title_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView android:id="@+id/event_description"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/list_item_event_date"
+        android:layout_marginLeft="15dp"
+        android:layout_toStartOf="@+id/list_item_event_date"
+        android:fontFamily="roboto-regular"
+        android:padding="4dp"
+        android:textAlignment="viewStart"
+        android:textColor="#48484A"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="Assignment Title" />
+
+    <TextView
+        android:id="@+id/list_item_event_description_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_item_event_date"
+        android:layout_marginLeft="15dp"
+        android:padding="4dp"
+        android:textColor="#8C8E90"
+        android:textSize="14sp"
+        tools:text="Students will participate in a Socratic seminar around the Civil Rights movement. Students who are absent on the day of the seminar should plan on attending a makeup session after school on the Tuesday following the seminar. Students who fail to attend the session will earn a grade of 0 on the assessment and will be referred for academic support. Texts and pre-seminar questions are attached."
+        android:layout_alignEnd="@+id/list_item_event_date" />
+
+</RelativeLayout>
