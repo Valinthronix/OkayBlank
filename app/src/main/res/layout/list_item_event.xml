@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
@@ -8,44 +9,65 @@
 
 	<TextView
 		android:id="@+id/list_item_event_date"
-		android:layout_width="60dp"
-		android:layout_height="60dp"
-		android:layout_alignParentRight="true"
-		android:layout_marginRight="20dp"
-		android:layout_marginTop="10dp"
+		android:layout_width="56dp"
+		android:layout_height="56dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="8dp"
 		android:background="@drawable/redcirc"
 		android:fontFamily="sans-serif"
 		android:gravity="center"
 		android:textColor="@android:color/white"
 		android:textSize="24sp"
 		android:textStyle="bold"
-		tools:text="13" />
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:layout_constraintBottom_creator="1"
+		tools:layout_constraintLeft_creator="1"
+		tools:layout_constraintRight_creator="1"
+		tools:layout_constraintTop_creator="1"
+		tools:text="13"
+		app:layout_constraintBottom_toBottomOf="parent"
+		android:layout_marginBottom="8dp"/>
 
 	<TextView
 		android:id="@+id/list_item_event_title_text_view"
-		android:layout_width="match_parent"
-		android:layout_height="30dp"
-		android:layout_alignTop="@id/list_item_event_date"
-		android:layout_marginLeft="15dp"
-		android:layout_toStartOf="@+id/list_item_event_date"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="8dp"
+		android:ellipsize="end"
 		android:fontFamily="roboto-regular"
-		android:padding="4dp"
 		android:gravity="bottom|left"
+		android:maxLines="1"
+		android:padding="4dp"
 		android:textColor="#48484A"
 		android:textSize="14sp"
 		android:textStyle="bold"
-		tools:text="Event Title" />
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toLeftOf="@+id/list_item_event_date"
+		app:layout_constraintTop_toTopOf="@+id/list_item_event_date"
+		tools:layout_constraintBottom_creator="1"
+		tools:layout_constraintLeft_creator="1"
+		tools:layout_constraintTop_creator="1"
+		tools:text="Event Title"/>
 
 	<TextView
 		android:id="@+id/list_item_event_description_text_view"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="15dp"
+		android:layout_marginBottom="6dp"
+		android:ellipsize="end"
+		android:maxLines="2"
 		android:padding="4dp"
 		android:textColor="#8C8E90"
 		android:textSize="13sp"
-		tools:text="Event Description"
-		android:layout_below="@+id/list_item_event_title_text_view"
-		android:layout_toStartOf="@+id/list_item_event_date" />
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="@id/list_item_event_title_text_view"
+		app:layout_constraintRight_toRightOf="@id/list_item_event_title_text_view"
+		app:layout_constraintTop_toBottomOf="@id/list_item_event_title_text_view"
+		tools:layout_constraintBottom_creator="1"
+		tools:layout_constraintLeft_creator="1"
+		tools:layout_constraintRight_creator="1"
+		tools:text="Students will participate in a Socratic seminar around the Civil Rights movement. Students who are absent on the day of the seminar should plan"/>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

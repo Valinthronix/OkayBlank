@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ public class EventListFragment extends Fragment {
 
 	private RecyclerView mEventRecyclerView;
 	private EventAdapter mAdapter;
+	private DividerItemDecoration mDividerItemDecoration;
 
 
 	public static EventListFragment newInstance(String block){
@@ -45,6 +47,8 @@ public class EventListFragment extends Fragment {
 
 		mEventRecyclerView = (RecyclerView) view.findViewById(R.id.event_recycler_view);
 		mEventRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		mDividerItemDecoration = new DividerItemDecoration(mEventRecyclerView.getContext(), LinearLayoutManager.VERTICAL);
+		mEventRecyclerView.addItemDecoration(mDividerItemDecoration);
 
 		UpdateUI();
 
